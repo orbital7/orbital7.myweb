@@ -16,5 +16,12 @@ namespace Orbital7.MyWeb.Services
 
         Task<Web> UpdateAsync(
             Web web);
+
+        Task<Web> UpdateThumbnailsIfDueAsync(
+            Web web,
+            bool forceUpdate = false);
+
+        Task UpdateAllThumbnailsIfDueAsync(
+            bool forceUpdate = false);
     }
 }

@@ -17,33 +17,63 @@ namespace Orbital7.MyWeb.Services.Default
 
         }
 
-        public async Task<Site> UpdateThumbnailAsync(
+        public async Task<Site> UpdateThumbnailIfDueAsync(
+            Site site,
+            bool forceUpdate = false)
+        {
+            if (forceUpdate || site.IsThumbnailUpdateDue)
+                return await UpdateThumbnailNowAsync(site);
+            else
+                return site;
+        }
+
+        public async Task<Site> UpdateThumbnailNowAsync(
             Site site)
         {
             byte[] thumbnail = null;
 
+            site.ThumbnailLastUpdatedDateUtc = DateTime.UtcNow;
+            site.ThumbnailLastUpdatedSuccess = false;
+
+            Console.WriteLine("Updating Thumbnail for {0}", site.Url);
+
+            // Generate the thumbnail.
             try
             {
                 var configuration = this.ServiceProvider.GetRequiredService<IConfiguration>();
-                var thumIOAuthCode = configuration["thumIOAuthCode"];
-                var url = "https://image.thum.io/get/width/640/crop/800/noanimate/png/";
+                var thumIOAuthCode = configuration["ThumIOAuthCode"];
+                var url = "https://image.thum.io/get/width/640/crop/762/maxAge/0/noanimate/png/";
                 if (!string.IsNullOrEmpty(thumIOAuthCode))
                     url += "auth/" + thumIOAuthCode + "/";
-                url += site.Url;
+                url += site.Url + "?mywebnow=" + DateTime.UtcNow.FormatAsFileSystemSafeDateTime();
 
                 var httpClient = new HttpClient();
                 thumbnail = await httpClient.GetByteArrayAsync(url);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                // TODO.
+                // TODO: Log eventually.
+                Console.WriteLine("Error generating thumbnail for {0}: {1} {2}",
+                    site.Url, ex.Message, ex.StackTrace);
             }
 
+            // Record the thumbnail.
             if (thumbnail != null && thumbnail.Length > 0)
             {
-                var container = GetWebContainer(site.Web.Key);
-                var blob = container.GetBlockBlobReference(site.ThumbnailFilename);
-                await blob.UploadFromByteArrayAsync(thumbnail, 0, thumbnail.Length);
+                try
+                {
+                    var container = GetWebContainer(site.Web.Key);
+                    var blob = container.GetBlockBlobReference(site.ThumbnailFilename);
+                    await blob.UploadFromByteArrayAsync(thumbnail, 0, thumbnail.Length);
+
+                    site.ThumbnailLastUpdatedSuccess = true;
+                }
+                catch(Exception ex)
+                {
+                    // TODO: Log eventually.
+                    Console.WriteLine("Error recording thumbnail for {0}: {1} {2}",
+                        site.Url, ex.Message, ex.StackTrace);
+                }
             }
 
             return site;

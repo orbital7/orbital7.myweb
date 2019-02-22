@@ -17,7 +17,8 @@ namespace Orbital7.MyWeb.Models
 
         }
 
-        public Web(string key)
+        public Web(
+            string key)
             : this()
         {
             this.Key = key;
@@ -64,6 +65,14 @@ namespace Orbital7.MyWeb.Models
                     select y).FirstOrDefault();
         }
 
+        public List<Group> GatherAllGroups(
+            Guid groupId)
+        {
+            return (from x in this.Categories
+                    from y in x.Groups
+                    select y).ToList();
+        }
+
         public Site GetSite(
             Guid siteId)
         {
@@ -72,6 +81,14 @@ namespace Orbital7.MyWeb.Models
                     from z in y.Sites
                     where z.Id == siteId
                     select z).FirstOrDefault();
+        }
+
+        public List<Site> GatherAllSites()
+        {
+            return (from x in this.Categories
+                    from y in x.Groups
+                    from z in y.Sites
+                    select z).ToList();
         }
     }
 }

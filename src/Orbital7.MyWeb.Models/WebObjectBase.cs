@@ -19,7 +19,8 @@ namespace Orbital7.MyWeb.Models
             this.Id = Guid.NewGuid();
         }
 
-        public WebObjectBase(string name)
+        public WebObjectBase(
+            string name)
             : this()
         {
             this.Name = name;

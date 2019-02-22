@@ -14,7 +14,8 @@ namespace Orbital7.MyWeb.Models
             
         }
 
-        public Category(string name)
+        public Category(
+            string name)
             : base(name)
         {
 

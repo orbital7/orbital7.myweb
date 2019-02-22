@@ -14,7 +14,8 @@ namespace Orbital7.MyWeb.Models
             
         }
 
-        public Group(string name)
+        public Group(
+            string name)
             : base(name)
         {
 

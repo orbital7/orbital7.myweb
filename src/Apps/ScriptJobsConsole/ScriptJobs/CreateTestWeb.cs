@@ -45,7 +45,7 @@ namespace ScriptJobsConsole.ScriptJobs
                             {
                                 Sites = new List<Site>()
                                 {
-                                    new Site("CNN", "https://cnn.com"),
+                                    new Site("CNN", "https://www.cnn.com"),
                                     new Site("ESPN NBA", "https://espn.com/nba"),
                                 }
                             },
