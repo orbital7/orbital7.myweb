@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{B63BBA0F-2550-4E03-8445-94A853148178}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orbital7.MyWeb.Models", "Orbital7.MyWeb.Models\Orbital7.MyWeb.Models.csproj", "{089E3DB7-B2D6-4D23-A0FA-F00CEC46AAD6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orbital7.MyWeb.Services", "Orbital7.MyWeb.Services\Orbital7.MyWeb.Services.csproj", "{9740A7C2-F70E-456A-B952-E67FBA29D96E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orbital7.MyWeb.Services.Default", "Orbital7.MyWeb.Services.Default\Orbital7.MyWeb.Services.Default.csproj", "{DA969570-3633-412F-BE70-135B924869F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScriptJobsConsole", "Apps\ScriptJobsConsole\ScriptJobsConsole.csproj", "{D1F7AC2E-A4C9-4B86-9860-0F1CCB44DDA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{089E3DB7-B2D6-4D23-A0FA-F00CEC46AAD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{089E3DB7-B2D6-4D23-A0FA-F00CEC46AAD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{089E3DB7-B2D6-4D23-A0FA-F00CEC46AAD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{089E3DB7-B2D6-4D23-A0FA-F00CEC46AAD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9740A7C2-F70E-456A-B952-E67FBA29D96E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9740A7C2-F70E-456A-B952-E67FBA29D96E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9740A7C2-F70E-456A-B952-E67FBA29D96E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9740A7C2-F70E-456A-B952-E67FBA29D96E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA969570-3633-412F-BE70-135B924869F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA969570-3633-412F-BE70-135B924869F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA969570-3633-412F-BE70-135B924869F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA969570-3633-412F-BE70-135B924869F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1F7AC2E-A4C9-4B86-9860-0F1CCB44DDA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1F7AC2E-A4C9-4B86-9860-0F1CCB44DDA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1F7AC2E-A4C9-4B86-9860-0F1CCB44DDA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1F7AC2E-A4C9-4B86-9860-0F1CCB44DDA2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D1F7AC2E-A4C9-4B86-9860-0F1CCB44DDA2} = {B63BBA0F-2550-4E03-8445-94A853148178}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E1312EF-126F-4C58-BB1B-B2BCC783CD21}
+	EndGlobalSection
+EndGlobal
