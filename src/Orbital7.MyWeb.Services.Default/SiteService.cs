@@ -40,13 +40,19 @@ namespace Orbital7.MyWeb.Services.Default
             // Generate the thumbnail.
             try
             {
+                var url = "https://image.thum.io/get/width/640/crop/762/maxAge/0/noanimate/png/";
+
+                // Use auth code if found.
                 var configuration = this.ServiceProvider.GetRequiredService<IConfiguration>();
                 var thumIOAuthCode = configuration["ThumIOAuthCode"];
-                var url = "https://image.thum.io/get/width/640/crop/762/maxAge/0/noanimate/png/";
                 if (!string.IsNullOrEmpty(thumIOAuthCode))
                     url += "auth/" + thumIOAuthCode + "/";
-                url += site.Url + "?mywebnow=" + DateTime.UtcNow.FormatAsFileSystemSafeDateTime();
 
+                // Add site Url and ensure we won't get a cached image by appending the mywebnow query param. 
+                var delim = site.Url.Contains("?") ? "&" : "?";
+                url += site.Url + delim + "mywebnow=" + DateTime.UtcNow.FormatAsFileSystemSafeDateTime();
+
+                // Download.
                 var httpClient = new HttpClient();
                 thumbnail = await httpClient.GetByteArrayAsync(url);
             }
@@ -66,6 +72,7 @@ namespace Orbital7.MyWeb.Services.Default
                     var blob = container.GetBlockBlobReference(site.ThumbnailFilename);
                     await blob.UploadFromByteArrayAsync(thumbnail, 0, thumbnail.Length);
 
+                    site.ThumbnailUrl = blob.Uri.ToString();
                     site.ThumbnailLastUpdatedSuccess = true;
                 }
                 catch(Exception ex)

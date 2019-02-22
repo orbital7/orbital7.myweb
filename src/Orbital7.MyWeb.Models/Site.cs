@@ -12,6 +12,8 @@ namespace Orbital7.MyWeb.Models
 
         public bool ThumbnailLastUpdatedSuccess { get; set; }
 
+        public string ThumbnailUrl { get; set; }
+
         public string ThumbnailFilename => this.Id + ".png";
 
         public bool IsThumbnailUpdateDue => DetermineIsThumbnailUpdateDue();
