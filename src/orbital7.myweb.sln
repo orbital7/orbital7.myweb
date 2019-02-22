@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orbital7.MyWeb.Services.Def
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScriptJobsConsole", "Apps\ScriptJobsConsole\ScriptJobsConsole.csproj", "{D1F7AC2E-A4C9-4B86-9860-0F1CCB44DDA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebJob", "Apps\WebJob\WebJob.csproj", "{AB03636D-C6AB-434B-89EF-7C2FCA660547}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,12 +37,17 @@ Global
 		{D1F7AC2E-A4C9-4B86-9860-0F1CCB44DDA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1F7AC2E-A4C9-4B86-9860-0F1CCB44DDA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1F7AC2E-A4C9-4B86-9860-0F1CCB44DDA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB03636D-C6AB-434B-89EF-7C2FCA660547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB03636D-C6AB-434B-89EF-7C2FCA660547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB03636D-C6AB-434B-89EF-7C2FCA660547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB03636D-C6AB-434B-89EF-7C2FCA660547}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D1F7AC2E-A4C9-4B86-9860-0F1CCB44DDA2} = {B63BBA0F-2550-4E03-8445-94A853148178}
+		{AB03636D-C6AB-434B-89EF-7C2FCA660547} = {B63BBA0F-2550-4E03-8445-94A853148178}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E1312EF-126F-4C58-BB1B-B2BCC783CD21}
