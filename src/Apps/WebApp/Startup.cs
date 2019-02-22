@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -24,15 +25,16 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.Configure<MvcOptions>(options => { options.Filters.Add(new RequireHttpsAttribute()); });
             services.AddMyWebDefaultServices();
         }
 
@@ -50,9 +52,18 @@ namespace WebApp
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+
+#if debug
+            var nodeModulesPath = Path.GetFullPath(Path.Combine(env.ContentRootPath,
+                @"..\..\..\..\orbital7.rapidapp\src\Orbital7.RapidApp2\node_modules"));
+#else
+            var nodeModulesPath = Path.Combine(env.ContentRootPath, @"node_modules");
+#endif
+            app.ExtendWebRootStaticFiles(env, nodeModulesPath, "");
+
+            //app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {

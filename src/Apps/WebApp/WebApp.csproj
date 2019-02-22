@@ -6,6 +6,18 @@
     <UserSecretsId>3954d30f-ad64-483a-89ed-697b49d15f82</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;debug</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -14,6 +26,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\orbital7.rapidapp\src\Orbital7.RapidApp2\Orbital7.RapidApp2.csproj" />
     <ProjectReference Include="..\..\Orbital7.MyWeb.Services.Default\Orbital7.MyWeb.Services.Default.csproj" />
   </ItemGroup>
 

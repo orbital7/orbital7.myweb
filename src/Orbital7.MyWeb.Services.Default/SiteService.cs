@@ -40,17 +40,22 @@ namespace Orbital7.MyWeb.Services.Default
             // Generate the thumbnail.
             try
             {
-                var url = "https://image.thum.io/get/width/640/crop/762/maxAge/0/noanimate/png/";
+                var url = "https://image.thum.io/get/";
 
-                // Use auth code if found.
+                // Use authorization if found.
                 var configuration = this.ServiceProvider.GetRequiredService<IConfiguration>();
-                var thumIOAuthCode = configuration["ThumIOAuthCode"];
-                if (!string.IsNullOrEmpty(thumIOAuthCode))
-                    url += "auth/" + thumIOAuthCode + "/";
+                var thumIOId = configuration["ThumIOId"];
+                var thumIOUrlKey = configuration["ThumIOUrlKey"];
+                if (!string.IsNullOrEmpty(thumIOId) && !string.IsNullOrEmpty(thumIOUrlKey))
+                    url += "auth/" + thumIOId + "-" + thumIOUrlKey + "/";
 
-                // Add site Url and ensure we won't get a cached image by appending the mywebnow query param. 
+                // Add the rendering options and site Url. 
+                url += "width/640/crop/762/maxAge/0/noanimate/png/";
+                url += site.Url;
+
+                // Ensure we won't get a cached image by appending the mywebnow query param. 
                 var delim = site.Url.Contains("?") ? "&" : "?";
-                url += site.Url + delim + "mywebnow=" + DateTime.UtcNow.FormatAsFileSystemSafeDateTime();
+                url += delim + "mywebnow=" + DateTime.UtcNow.FormatAsFileSystemSafeDateTime();
 
                 // Download.
                 var httpClient = new HttpClient();
