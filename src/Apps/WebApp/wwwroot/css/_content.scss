@@ -1,0 +1,94 @@
+﻿$active-color: #FF6600;
+$button-width: 45px;
+
+.edit-element {
+    visibility: hidden;
+}
+
+.category-item {
+    height: 48px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 0px;
+    border-bottom: 1px solid #DDDDDD;
+    font-size: 13pt;
+    color: black;
+    display: inline-block;
+    width: 182px;
+}
+
+.category-item-selectable {
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.category-item-selectable:hover {
+    background-color: #EDEDED;
+}
+
+.category-item-selected {
+    background-color: $active-color;
+}
+
+.category-buttons {
+    position: relative;
+    margin-left: -200px;
+    right: -200px;
+    top: 0px;
+    background-color: pink;
+}
+
+.group-item {
+    color: $active-color;
+    font-size: 13pt;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.group-action-button {
+    height: 26px;
+    padding-top: 0px;
+    padding-left: 8px;
+    margin-left: 10px;
+    width: 32px;
+}
+
+.group-container {
+    margin-bottom: 5px;
+}
+
+.site-item {
+    padding-right: 12px;
+    padding-bottom: 12px;
+    display: inline-block;
+}
+
+.site-thumbnail {
+    width: 235px;
+    height: 149px;
+    border: 1px solid #DDDDDD;
+    cursor: pointer;
+}
+
+.site-thumbnail:hover {
+    border: 1px solid $active-color;
+}
+
+.site-edit-button {
+    position: relative;
+    left: -125px;
+    top: 0px;
+    margin-top: 0px;
+    margin-left: -$button-width;
+    width: $button-width;
+}
+
+.site-delete-button {
+    position: relative;
+    left: -70px;
+    top: 0px;
+    margin-top: 0px;
+    margin-left: -$button-width;
+    width: $button-width;
+}

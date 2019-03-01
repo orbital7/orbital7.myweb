@@ -9,10 +9,10 @@ namespace Orbital7.MyWeb.Services
     public interface IWebService
     {
         Task<Web> CreateAsync(
-            string key);
+            string webKey);
 
         Task<Web> GetAsync(
-            string key);
+            string webKey);
 
         Task<Web> UpdateAsync(
             Web web);
@@ -23,5 +23,43 @@ namespace Orbital7.MyWeb.Services
 
         Task UpdateAllThumbnailsIfDueAsync(
             bool forceUpdate = false);
+
+        Task<Web> AddCategoryAsync(
+            string webKey,
+            Category category);
+
+        Task<Web> UpdateCategoryAsync(
+            string webKey,
+            Category category);
+
+        Task<Web> DeleteCategoryAsync(
+            string webKey,
+            Guid categoryId);
+
+        Task<Web> AddGroupAsync(
+            string webKey,
+            Guid categoryId,
+            Group group);
+
+        Task<Web> UpdateGroupAsync(
+            string webKey,
+            Group group);
+
+        Task<Web> DeleteGroupAsync(
+            string webKey,
+            Guid groupId);
+
+        Task<Web> AddSiteAsync(
+            string webKey,
+            Guid groupId,
+            Site site);
+
+        Task<Web> UpdateSiteAsync(
+            string webKey,
+            Site site);
+
+        Task<Web> DeleteSiteAsync(
+            string webKey,
+            Guid siteId);
     }
 }

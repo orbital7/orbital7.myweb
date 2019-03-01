@@ -5,6 +5,15 @@ using System.Text;
 
 namespace Orbital7.MyWeb.Models
 {
+    public enum WebObjectType
+    {
+        Category,
+
+        Group,
+
+        Site,
+    }
+
     public enum ThumbnailUpdateFrequency
     {
         [Display(Name = "Every 4 Weeks")]

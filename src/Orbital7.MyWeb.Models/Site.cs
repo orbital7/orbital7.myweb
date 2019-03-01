@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Orbital7.Extensions;
+using System;
 
 namespace Orbital7.MyWeb.Models
 {
     public class Site : WebObjectBase
     {
-        public string Url { get; set; }
+        [JsonIgnore]
+        public Group Group { get; internal set; }
 
         public ThumbnailUpdateFrequency ThumbnailUpdateFrequency { get; set; }
 
@@ -14,9 +17,16 @@ namespace Orbital7.MyWeb.Models
 
         public string ThumbnailUrl { get; set; }
 
-        public string ThumbnailFilename => this.Id + ".png";
+        public string ThumbnailCachedUrl => this.ThumbnailUrl +
+            (this.ThumbnailLastUpdatedDateUtc.HasValue ?
+                "?updatedAt=" + this.ThumbnailLastUpdatedDateUtc.Value.FormatAsFileSystemSafeDateTime() :
+                null);
+
+        public string ThumbnailFilename => this.Id + MimeTypesHelper.FILE_EXT_PNG;
 
         public bool IsThumbnailUpdateDue => DetermineIsThumbnailUpdateDue();
+
+        public override WebObjectType Type => WebObjectType.Site;
 
         public Site()
             : base()
@@ -25,19 +35,17 @@ namespace Orbital7.MyWeb.Models
         }
 
         public Site(
-            string name)
-            : base(name)
+            string url)
+            : base(url)
         {
 
         }
 
         public Site(
-            string name, 
             string url, 
             ThumbnailUpdateFrequency thumbnailUpdateFrequency = ThumbnailUpdateFrequency.Every4Weeks)
-            : this(name)
+            : this(url)
         {
-            this.Url = url;
             this.ThumbnailUpdateFrequency = thumbnailUpdateFrequency;
         }
 

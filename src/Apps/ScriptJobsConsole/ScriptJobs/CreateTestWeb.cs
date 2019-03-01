@@ -31,8 +31,8 @@ namespace ScriptJobsConsole.ScriptJobs
                             {
                                 Sites = new List<Site>()
                                 {
-                                    new Site("Twitter", "https://twitter.com"),
-                                    new Site("Instagram", "https://instagram.com"),
+                                    new Site("https://twitter.com"),
+                                    new Site("https://instagram.com"),
                                 }
                             }
                         }
@@ -45,25 +45,25 @@ namespace ScriptJobsConsole.ScriptJobs
                             {
                                 Sites = new List<Site>()
                                 {
-                                    new Site("CNN", "https://www.cnn.com"),
-                                    new Site("ESPN NBA", "https://espn.com/nba"),
+                                    new Site("https://www.cnn.com"),
+                                    new Site("https://espn.com/nba"),
                                 }
                             },
                             new Group("Technology")
                             {
                                 Sites = new List<Site>()
                                 {
-                                    new Site("Engadget", "https://engadget.com"),
-                                    new Site("Gizmodo", "https://gizmodo.com"),
-                                    new Site("ArsTechnica", "https://arstechnica.com"),
+                                    new Site("https://engadget.com"),
+                                    new Site("https://gizmodo.com"),
+                                    new Site("https://arstechnica.com"),
                                 }
                             },
                             new Group("Automotive")
                             {
                                 Sites = new List<Site>()
                                 {
-                                    new Site("AutoBlog", "https://www.autoblog.com"),
-                                    new Site("Jalopnik", "https://jalopnik.com"),
+                                    new Site("https://www.autoblog.com"),
+                                    new Site("https://jalopnik.com"),
                                 }
                             }
                         }
@@ -79,6 +79,7 @@ namespace ScriptJobsConsole.ScriptJobs
 
             var webService = serviceProvider.GetRequiredService<IWebService>();
             await webService.UpdateAsync(web);
+            await webService.UpdateAllThumbnailsIfDueAsync();
 
             var updatedWeb = await webService.GetAsync(SAMPLE_WEB_KEY);
         }

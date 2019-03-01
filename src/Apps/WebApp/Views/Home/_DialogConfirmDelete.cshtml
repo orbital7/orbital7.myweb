@@ -1,0 +1,17 @@
+﻿@model WebApp.Models.Home._DialogConfirmDeleteModel
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.WebKey)
+    @Html.HiddenFor(x => x.WebObjectId)
+    @Html.HiddenFor(x => x.WebObjectType)
+    @Html.HiddenFor(x => x.Value)
+
+    <div>
+        Are you sure you want to <span class="ra-font-bold ra-color-error">delete</span> 
+        the @this.Model.WebObjectType.ToDisplayString() 
+        <span class="ra-font-bold">@this.Model.Value</span>?
+    </div>
+}

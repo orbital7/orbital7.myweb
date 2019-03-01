@@ -9,7 +9,7 @@ namespace ScriptJobsConsole
         static void Main(string[] args)
         {
             ScriptJobExecutionEngine.Execute(
-               new UpdateThumbnails());
+               new CreateTestWeb());
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.WindowsAzure.Storage.Blob;
 using Orbital7.MyWeb.Models;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace Orbital7.MyWeb.Services.Default
             site.ThumbnailLastUpdatedDateUtc = DateTime.UtcNow;
             site.ThumbnailLastUpdatedSuccess = false;
 
-            Console.WriteLine("Updating Thumbnail for {0}", site.Url);
+            Console.WriteLine("Updating Thumbnail for {0}", site.Value);
 
             // Generate the thumbnail.
             try
@@ -51,10 +52,10 @@ namespace Orbital7.MyWeb.Services.Default
 
                 // Add the rendering options and site Url. 
                 url += "width/640/crop/762/maxAge/0/noanimate/png/";
-                url += site.Url;
+                url += site.Value;
 
                 // Ensure we won't get a cached image by appending the mywebnow query param. 
-                var delim = site.Url.Contains("?") ? "&" : "?";
+                var delim = site.Value.Contains("?") ? "&" : "?";
                 url += delim + "mywebnow=" + DateTime.UtcNow.FormatAsFileSystemSafeDateTime();
 
                 // Download.
@@ -65,7 +66,7 @@ namespace Orbital7.MyWeb.Services.Default
             {
                 // TODO: Log eventually.
                 Console.WriteLine("Error generating thumbnail for {0}: {1} {2}",
-                    site.Url, ex.Message, ex.StackTrace);
+                    site.Value, ex.Message, ex.StackTrace);
             }
 
             // Record the thumbnail.
@@ -73,8 +74,7 @@ namespace Orbital7.MyWeb.Services.Default
             {
                 try
                 {
-                    var container = GetWebContainer(site.Web.Key);
-                    var blob = container.GetBlockBlobReference(site.ThumbnailFilename);
+                    var blob = GetThumbnailBlob(site);
                     await blob.UploadFromByteArrayAsync(thumbnail, 0, thumbnail.Length);
 
                     site.ThumbnailUrl = blob.Uri.ToString();
@@ -84,10 +84,26 @@ namespace Orbital7.MyWeb.Services.Default
                 {
                     // TODO: Log eventually.
                     Console.WriteLine("Error recording thumbnail for {0}: {1} {2}",
-                        site.Url, ex.Message, ex.StackTrace);
+                        site.Value, ex.Message, ex.StackTrace);
                 }
             }
 
+            return site;
+        }
+
+        private CloudBlockBlob GetThumbnailBlob(
+            Site site)
+        {
+            var container = GetWebContainer(site.Web.Key);
+            var blob = container.GetBlockBlobReference(site.ThumbnailFilename);
+            return blob;
+        }
+
+        public async Task<Site> DeleteThumbnailAsync(
+            Site site)
+        {
+            var blob = GetThumbnailBlob(site);
+            await blob.DeleteIfExistsAsync();
             return site;
         }
     }

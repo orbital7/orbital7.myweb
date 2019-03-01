@@ -24,15 +24,20 @@
                     <td class="ra-layout-sidebar-toggle-button" style="height: 38px; width: 56px; vertical-align: middle; text-align: left;">
                         <button type="button"
                                 class="btn btn-outline-secondary"
-                                onclick="raToggleSidebar()">
+                                onclick="raToggleSidebar();">
                             <i class="fas fa-bars" style="font-size: 1.1em;"></i>
                         </button>
                     </td>
                     <td style="text-align: left; height: 38px;">
-                        Left
+                        
                     </td>
                     <td style="text-align: right; height: 38px;">
-                        Right
+                        <button type="button"
+                                class="btn btn-outline-secondary"
+                                style="width: 40px; padding-left: 8px;"
+                                onclick="toggleEditMode(this);">
+                            <i class="far fa-edit fa-lg"></i>
+                        </button>
                     </td>
                 </tr>
             </table>
@@ -45,7 +50,7 @@
 
         </div>
 
-        <div class="ra-layout-body" style="padding: 15px;" onmousedown="raHideSidebar();">
+        <div class="ra-layout-body" onmousedown="raHideSidebar();">
             @RenderBody()
         </div>
 

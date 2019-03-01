@@ -14,5 +14,8 @@ namespace Orbital7.MyWeb.Services
 
         Task<Site> UpdateThumbnailNowAsync(
             Site site);
+
+        Task<Site> DeleteThumbnailAsync(
+            Site site);
     }
 }

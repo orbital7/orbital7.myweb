@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Newtonsoft.Json;
+using Orbital7.Extensions.Models;
 
 namespace Orbital7.MyWeb.Models
 {
     public class Web
     {
+        [Required]
         public string Key { get; set; }
 
         public List<Category> Categories { get; set; }
@@ -34,9 +37,13 @@ namespace Orbital7.MyWeb.Models
                 category.Web = web;
                 foreach (var group in category.Groups)
                 {
+                    group.Category = category;
                     group.Web = web;
                     foreach (var site in group.Sites)
+                    {
+                        site.Group = group;
                         site.Web = web;
+                    }
                 }
             }
 
@@ -89,6 +96,18 @@ namespace Orbital7.MyWeb.Models
                     from y in x.Groups
                     from z in y.Sites
                     select z).ToList();
+        }
+
+        public WebObjectBase GetWebObject(
+            WebObjectType type,
+            Guid id)
+        {
+            if (type == WebObjectType.Category)
+                return this.Categories.Get(id);
+            else if (type == WebObjectType.Group)
+                return GetGroup(id);
+            else
+                return GetSite(id);
         }
     }
 }
