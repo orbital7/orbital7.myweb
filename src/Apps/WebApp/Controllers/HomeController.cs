@@ -20,6 +20,8 @@ namespace WebApp.Controllers
             IServiceProvider serviceProvider)
         {
             this.ServiceProvider = serviceProvider;
+
+            RAHtmlHelperExtensions.TimeZone = TimeZoneInfo.Local;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

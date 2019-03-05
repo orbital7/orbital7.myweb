@@ -182,7 +182,7 @@ function updateGroup(group) {
 function getSiteHtml(site) {
 
     var html = "<span id='" + site.id + "' class='site-item' ";
-    html += "onclick='newWindowTo(\"" + site.url + "\");'>";
+    html += "onclick='navigateTo(\"" + site.url + "\");'>";
     html += "<img class='site-thumbnail' src='" + site.thumbnailCachedUrl + "' title='" + site.url + "' />";
     html += "<button class='btn btn-secondary ra-btn-edit edit-element site-edit-button' onclick='beginEditSite(event, \"" +
         site.id + "\");'><i class='far fa-edit fa fa-lg'></i></button>";
