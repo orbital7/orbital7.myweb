@@ -1,17 +1,43 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var initialScale = "1.0";
+    var userAgentHeader = this.Context.Request.Headers["User-Agent"];
+    if (userAgentHeader.ToString().Contains("iPhone"))
+    {
+        initialScale = "0.7";
+    }
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=@initialScale" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="MyWeb" />
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
     <title>MyWeb</title>
-    @Html.RAInfrastructureStylesheets()
-    @Html.RAInfrastructureScripts(includeTouch: true)
+    @await Html.RAInfrastructureStylesheetsAsync()
+    @await Html.RAInfrastructureScriptsAsync()
     @RenderSection("Scripts", required: false)
 
-    
+
 </head>
 <body>
 
@@ -29,13 +55,24 @@
                         </button>
                     </td>
                     <td style="text-align: left; height: 38px;">
-                        
+                        <button type="button"
+                                class="btn btn-secondary ra-btn-add edit-element"
+                                onclick="beginAddCategory(event);">
+                            <i class="fas fa-plus fa" style="font-size: 1.1em;"></i>
+                        </button>
                     </td>
                     <td style="text-align: right; height: 38px;">
                         <button type="button"
+                                class="btn btn-secondary edit-element ra-margin-right-xs"
+                                style="width: 40px; padding-left: 8px;"
+                                onclick="beginSetWeb(event);">
+                            <i class="fas fa-cogs" style="font-size: 1.1em;"></i>
+                        </button>
+                        <button id="editButton"
+                                type="button"
                                 class="btn btn-outline-secondary"
                                 style="width: 40px; padding-left: 8px;"
-                                onclick="toggleEditMode(this);">
+                                onclick="toggleEditMode();">
                             <i class="far fa-edit fa-lg"></i>
                         </button>
                     </td>
@@ -46,8 +83,6 @@
 
         <div class="ra-layout-sidebar">
 
-            Sidebar
-
         </div>
 
         <div class="ra-layout-body" onmousedown="raHideSidebar();">
@@ -56,39 +91,7 @@
 
     </div>
 
-    <div id="ra-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ra-dialog-title">
-        <div id="ra-dialog-modal" class="modal-dialog" role="document">
-            <div id="ra-dialog-modal-content" class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="ra-dialog-title">TITLE</h4>
-                    <button id="ra-dialog-cancelbutton-corner"
-                            type="button"
-                            class="close"
-                            onclick="raCloseModalDialog(event);"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <input type="hidden" id="ra-dialog-returnaction" />
-                </div>
-                <div class="modal-body" id="ra-dialog-body">
-                    BODY
-                </div>
-                <div class="modal-footer">
-                    <span id="ra-dialog-processing" style="display: none;">
-                        <img src="/orbital7-rapidapp/dist/images/spinners/ra-spinner-sm.gif" /> Processing...
-                    </span>
-                    @Html.RAButton("CANCEL",
-                        "raCloseModalDialog(event);",
-                        buttonClass: "btn-secondary btn-lg",
-                        buttonId: "ra-dialog-cancelbutton")
-                    @Html.RAButton("ACTION",
-                        "submitModalDialog(event);",
-                        buttonClass: "btn-primary btn-lg",
-                        buttonId: "ra-dialog-actionbutton")
-                </div>
-            </div>
-        </div>
-    </div>
+    @await Html.RAInfrastructurePageComponentsAsync()
 
 </body>
 </html>

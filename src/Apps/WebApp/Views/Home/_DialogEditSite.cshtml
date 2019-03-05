@@ -1,0 +1,23 @@
+﻿@model WebApp.Models.Home._DialogEditSiteModel
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Input.WebKey)
+    @Html.HiddenFor(x => x.Input.Id)
+    @Html.HiddenFor(x => x.Input.GroupId)
+
+    @if (this.Model.Site != null)
+    {
+        @Html.RAPropertyBlockDisplayFor(x => x.Site.ThumbnailLastUpdatedDateUtc)
+        @Html.RAPropertyBlockDisplayFor(x => x.Site.ThumbnailLastUpdatedSuccess)
+        @if (!this.Model.Site.ThumbnailLastUpdatedSuccess)
+        {
+            @Html.RAPropertyBlockDisplayFor(x => x.Site.ThumbnailUpdateError)
+        }
+    }
+
+    @Html.RAPropertyBlockEditorFor(x => x.Input.Url)
+    @Html.RAPropertyBlockEditorFor(x => x.Input.ThumbnailUpdateFrequency)
+}

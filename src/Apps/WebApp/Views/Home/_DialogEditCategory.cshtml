@@ -1,0 +1,11 @@
+﻿@model WebApp.Models.Home._DialogEditCategoryModel
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Input.WebKey)
+    @Html.HiddenFor(x => x.Input.Id)
+
+    @Html.RAPropertyBlockEditorFor(x => x.Input.Name)
+}

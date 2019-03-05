@@ -10,6 +10,10 @@
     <DefineConstants>TRACE;debug</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;release</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
   </ItemGroup>
@@ -27,7 +31,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\orbital7.rapidapp\src\Orbital7.RapidApp2\Orbital7.RapidApp2.csproj" />
-    <ProjectReference Include="..\..\Orbital7.MyWeb.Services.Default\Orbital7.MyWeb.Services.Default.csproj" />
+    <ProjectReference Include="..\..\Orbital7.MyWeb.Services.Default\Orbital7.MyWeb.Services.Default.csproj">
+      <Private>true</Private>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

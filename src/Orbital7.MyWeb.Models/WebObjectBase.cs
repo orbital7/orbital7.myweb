@@ -13,9 +13,6 @@ namespace Orbital7.MyWeb.Models
         [RequiredGuid]
         public Guid Id { get; set; }
 
-        [Required]
-        public string Value { get; set; }
-
         [JsonIgnore]
         public Web Web { get; internal set; }
 
@@ -24,18 +21,6 @@ namespace Orbital7.MyWeb.Models
         public WebObjectBase()
         {
             this.Id = Guid.NewGuid();
-        }
-
-        public WebObjectBase(
-            string value)
-            : this()
-        {
-            this.Value = value;
-        }
-
-        public override string ToString()
-        {
-            return this.Value;
         }
     }
 }

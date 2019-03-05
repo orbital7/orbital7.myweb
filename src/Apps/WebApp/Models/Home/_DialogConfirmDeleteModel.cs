@@ -33,7 +33,7 @@ namespace WebApp.Models.Home
                 WebKey = webKey,
                 WebObjectId = webObject.Id,
                 WebObjectType = webObject.Type,
-                Value = webObject.Value,
+                Value = webObject.ToString(),
             };
         }
     }

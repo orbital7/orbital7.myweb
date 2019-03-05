@@ -1,0 +1,10 @@
+﻿@model WebApp.Models.Home._DialogSetWebModel
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+
+    @Html.RAPropertyBlockEditorFor(x => x.WebKey, 
+        displayLabel: "Please enter the specified web key provided by your administrator")
+}

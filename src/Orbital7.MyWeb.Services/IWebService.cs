@@ -25,38 +25,30 @@ namespace Orbital7.MyWeb.Services
             bool forceUpdate = false);
 
         Task<Web> AddCategoryAsync(
-            string webKey,
-            Category category);
+            CategoryInput input);
 
         Task<Web> UpdateCategoryAsync(
-            string webKey,
-            Category category);
+            CategoryInput input);
 
         Task<Web> DeleteCategoryAsync(
             string webKey,
             Guid categoryId);
 
         Task<Web> AddGroupAsync(
-            string webKey,
-            Guid categoryId,
-            Group group);
+            GroupInput input);
 
         Task<Web> UpdateGroupAsync(
-            string webKey,
-            Group group);
+            GroupInput input);
 
         Task<Web> DeleteGroupAsync(
             string webKey,
             Guid groupId);
 
         Task<Web> AddSiteAsync(
-            string webKey,
-            Guid groupId,
-            Site site);
+            SiteInput input);
 
         Task<Web> UpdateSiteAsync(
-            string webKey,
-            Site site);
+            SiteInput input);
 
         Task<Web> DeleteSiteAsync(
             string webKey,

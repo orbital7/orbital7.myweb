@@ -71,17 +71,9 @@ namespace ScriptJobsConsole.ScriptJobs
                 }
             };
 
-            string serializedWeb = web.Serialize();
-            var deserializedWeb = Web.Load(serializedWeb);
-
-            string serializedWeb2 = web.Serialize();
-            var deserializedWeb2 = Web.Load(serializedWeb2);
-
             var webService = serviceProvider.GetRequiredService<IWebService>();
             await webService.UpdateAsync(web);
             await webService.UpdateAllThumbnailsIfDueAsync();
-
-            var updatedWeb = await webService.GetAsync(SAMPLE_WEB_KEY);
         }
     }
 }

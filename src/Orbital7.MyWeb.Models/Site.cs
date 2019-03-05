@@ -1,20 +1,31 @@
 ﻿using Newtonsoft.Json;
 using Orbital7.Extensions;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Orbital7.MyWeb.Models
 {
-    public class Site : WebObjectBase
+    public class Site : WebObjectBase, ISite
     {
         [JsonIgnore]
         public Group Group { get; internal set; }
 
+        [Required]
+        public string Url { get; set; }
+
+        [Display(Name = "Thumbnail Update Frequency")]
         public ThumbnailUpdateFrequency ThumbnailUpdateFrequency { get; set; }
 
+        [Display(Name = "Thumbnail Last Updated")]
         public DateTime? ThumbnailLastUpdatedDateUtc { get; set; }
 
+        [Display(Name = "Thumbnail Last Updated Successfully")]
         public bool ThumbnailLastUpdatedSuccess { get; set; }
 
+        [Display(Name = "Thumbnail Update Error")]
+        public string ThumbnailUpdateError { get; set; }
+
+        [Display(Name = "Thumbnail Url")]
         public string ThumbnailUrl { get; set; }
 
         public string ThumbnailCachedUrl => this.ThumbnailUrl +
@@ -35,18 +46,17 @@ namespace Orbital7.MyWeb.Models
         }
 
         public Site(
-            string url)
-            : base(url)
-        {
-
-        }
-
-        public Site(
             string url, 
             ThumbnailUpdateFrequency thumbnailUpdateFrequency = ThumbnailUpdateFrequency.Every4Weeks)
-            : this(url)
+            : this()
         {
+            this.Url = url;
             this.ThumbnailUpdateFrequency = thumbnailUpdateFrequency;
+        }
+
+        public override string ToString()
+        {
+            return this.Url;
         }
 
         private bool DetermineIsThumbnailUpdateDue()

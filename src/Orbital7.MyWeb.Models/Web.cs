@@ -72,8 +72,7 @@ namespace Orbital7.MyWeb.Models
                     select y).FirstOrDefault();
         }
 
-        public List<Group> GatherAllGroups(
-            Guid groupId)
+        public List<Group> GatherAllGroups()
         {
             return (from x in this.Categories
                     from y in x.Groups

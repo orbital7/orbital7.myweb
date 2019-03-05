@@ -35,8 +35,9 @@ namespace Orbital7.MyWeb.Services.Default
 
             site.ThumbnailLastUpdatedDateUtc = DateTime.UtcNow;
             site.ThumbnailLastUpdatedSuccess = false;
+            site.ThumbnailUpdateError = null;
 
-            Console.WriteLine("Updating Thumbnail for {0}", site.Value);
+            Console.WriteLine("Updating Thumbnail for {0}", site.Url);
 
             // Generate the thumbnail.
             try
@@ -52,21 +53,24 @@ namespace Orbital7.MyWeb.Services.Default
 
                 // Add the rendering options and site Url. 
                 url += "width/640/crop/762/maxAge/0/noanimate/png/";
-                url += site.Value;
+                url += site.Url;
 
                 // Ensure we won't get a cached image by appending the mywebnow query param. 
-                var delim = site.Value.Contains("?") ? "&" : "?";
+                var delim = site.Url.Contains("?") ? "&" : "?";
                 url += delim + "mywebnow=" + DateTime.UtcNow.FormatAsFileSystemSafeDateTime();
 
                 // Download.
-                var httpClient = new HttpClient();
+                var httpClient = new HttpClient()
+                {
+                    Timeout = new TimeSpan(0, 3, 0),
+                };
                 thumbnail = await httpClient.GetByteArrayAsync(url);
             }
             catch (Exception ex)
             {
-                // TODO: Log eventually.
+                site.ThumbnailUpdateError = "Error Generating: " + ex.Message;
                 Console.WriteLine("Error generating thumbnail for {0}: {1} {2}",
-                    site.Value, ex.Message, ex.StackTrace);
+                    site.Url, ex.Message, ex.StackTrace);
             }
 
             // Record the thumbnail.
@@ -82,9 +86,9 @@ namespace Orbital7.MyWeb.Services.Default
                 }
                 catch(Exception ex)
                 {
-                    // TODO: Log eventually.
+                    site.ThumbnailUpdateError = "Error Recording: " + ex.Message;
                     Console.WriteLine("Error recording thumbnail for {0}: {1} {2}",
-                        site.Value, ex.Message, ex.StackTrace);
+                        site.Url, ex.Message, ex.StackTrace);
                 }
             }
 

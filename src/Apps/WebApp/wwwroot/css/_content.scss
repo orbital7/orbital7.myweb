@@ -7,14 +7,14 @@ $button-width: 45px;
 
 .category-item {
     height: 48px;
-    padding-top: 10px;
+    margin: 0px;
     padding-left: 15px;
     padding-right: 0px;
     border-bottom: 1px solid #DDDDDD;
     font-size: 13pt;
     color: black;
-    display: inline-block;
     width: 182px;
+    @include no-select();
 }
 
 .category-item-selectable {
@@ -30,14 +30,6 @@ $button-width: 45px;
     background-color: $active-color;
 }
 
-.category-buttons {
-    position: relative;
-    margin-left: -200px;
-    right: -200px;
-    top: 0px;
-    background-color: pink;
-}
-
 .group-item {
     color: $active-color;
     font-size: 13pt;
@@ -46,12 +38,9 @@ $button-width: 45px;
     margin-bottom: 5px;
 }
 
-.group-action-button {
-    height: 26px;
-    padding-top: 0px;
-    padding-left: 8px;
-    margin-left: 10px;
-    width: 32px;
+.group-item-name {
+    padding-right: 10px;
+    @include no-select();
 }
 
 .group-container {

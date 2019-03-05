@@ -96,16 +96,14 @@ namespace Orbital7.MyWeb.Services.Default
         }
 
         public async Task<Web> AddCategoryAsync(
-            string webKey,
-            Category category)
+            CategoryInput input)
         {
-            var container = GetWebContainer(webKey);
+            var container = GetWebContainer(input.WebKey);
             var web = await ReadAsync(container);
 
-            var existingCategory = web.Categories.Get(category.Id);
-            if (existingCategory == null)
+            if (web.Categories.Get(input.Id) == null)
             {
-                web.Categories.Add(category);
+                web.Categories.Add(input.Create(web));
                 return await WriteAsync(container, web);
             }
             else
@@ -115,17 +113,15 @@ namespace Orbital7.MyWeb.Services.Default
         }
 
         public async Task<Web> UpdateCategoryAsync(
-            string webKey,
-            Category category)
+            CategoryInput input)
         {
-            var container = GetWebContainer(webKey);
+            var container = GetWebContainer(input.WebKey);
             var web = await ReadAsync(container);
 
-            var existingCategory = web.Categories.Get(category.Id);
-            if (existingCategory == null)
+            var existingCategory = web.Categories.Get(input.Id);
+            if (existingCategory != null)
             {
-                var index = web.Categories.IndexOf(existingCategory);
-                web.Categories[index] = category;
+                input.Update(existingCategory);
                 return await WriteAsync(container, web);
             }
             else
@@ -154,25 +150,22 @@ namespace Orbital7.MyWeb.Services.Default
         }
 
         public async Task<Web> AddGroupAsync(
-            string webKey,
-            Guid categoryId,
-            Group group)
+            GroupInput input)
         {
-            var container = GetWebContainer(webKey);
+            var container = GetWebContainer(input.WebKey);
             var web = await ReadAsync(container);
 
-            var existingGroup = web.GetGroup(group.Id);
-            if (existingGroup == null)
+            if (web.GetGroup(input.Id) == null)
             {
-                var category = web.GetCategory(categoryId);
-                if (group != null)
+                var category = web.GetCategory(input.CategoryId);
+                if (category != null)
                 {
-                    category.Groups.Add(group);
+                    category.Groups.Add(input.Create(web));
                     return await WriteAsync(container, web);
                 }
                 else
                 {
-                    throw new Exception("The specified group could not be found");
+                    throw new Exception("The specified parent category could not be found");
                 }
             }
             else
@@ -182,17 +175,15 @@ namespace Orbital7.MyWeb.Services.Default
         }
 
         public async Task<Web> UpdateGroupAsync(
-            string webKey,
-            Group group)
+            GroupInput input)
         {
-            var container = GetWebContainer(webKey);
+            var container = GetWebContainer(input.WebKey);
             var web = await ReadAsync(container);
 
-            var existingGroup = web.GetGroup(group.Id);
-            if (existingGroup == null)
+            var group = web.GetGroup(input.Id);
+            if (group != null)
             {
-                var index = existingGroup.Category.Groups.IndexOf(existingGroup);
-                existingGroup.Category.Groups[index] = group;
+                input.Update(group);
                 return await WriteAsync(container, web);
             }
             else
@@ -221,28 +212,25 @@ namespace Orbital7.MyWeb.Services.Default
         }
 
         public async Task<Web> AddSiteAsync(
-            string webKey,
-            Guid groupId,
-            Site site)
+            SiteInput input)
         {
-            var container = GetWebContainer(webKey);
+            var container = GetWebContainer(input.WebKey);
             var web = await ReadAsync(container);
 
-            var existingSite = web.GetSite(site.Id);
-            if (existingSite == null)
+            if (web.GetSite(input.Id) == null)
             {
-                var group = web.GetGroup(groupId);
+                var group = web.GetGroup(input.GroupId);
                 if (group != null)
                 {
+                    var site = input.Create(web);
                     group.Sites.Add(site);
-
                     await this.ServiceProvider.GetRequiredService<ISiteService>()
                         .UpdateThumbnailNowAsync(site);
                     return await WriteAsync(container, web);
                 }
                 else
                 {
-                    throw new Exception("The specified group could not be found");
+                    throw new Exception("The specified parent group could not be found");
                 }
             }
             else
@@ -252,20 +240,17 @@ namespace Orbital7.MyWeb.Services.Default
         }
 
         public async Task<Web> UpdateSiteAsync(
-            string webKey,
-            Site site)
+            SiteInput input)
         {
-            var container = GetWebContainer(webKey);
+            var container = GetWebContainer(input.WebKey);
             var web = await ReadAsync(container);
 
-            var existingSite = web.GetSite(site.Id);
-            if (existingSite == null)
+            var site = web.GetSite(input.Id);
+            if (site != null)
             {
-                var index = existingSite.Group.Sites.IndexOf(existingSite);
-                existingSite.Group.Sites[index] = site;
-
+                input.Update(site);
                 await this.ServiceProvider.GetRequiredService<ISiteService>()
-                        .UpdateThumbnailNowAsync(site);
+                    .UpdateThumbnailNowAsync(site);
                 return await WriteAsync(container, web);
             }
             else

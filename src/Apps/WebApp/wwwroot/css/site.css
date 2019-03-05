@@ -157,7 +157,7 @@ select.form-control {
   width: 182px;
   background-color: #F6F6F6;
   height: calc(100% - 50px);
-  overflow: hidden;
+  overflow: visible;
   display: block;
   z-index: auto; }
 
@@ -386,6 +386,13 @@ input[type=text].ra-toolbar-datepicker {
 .ra-btn-xs {
   height: 28px;
   padding-top: 1px; }
+
+.ra-btn-inline {
+  height: 26px;
+  padding-top: 0px;
+  padding-left: 8px;
+  margin-right: 10px;
+  width: 32px; }
 
 .ra-btn-input {
   height: 32px;
@@ -768,14 +775,19 @@ table.ra-statictable tr td {
 
 .category-item {
   height: 48px;
-  padding-top: 10px;
+  margin: 0px;
   padding-left: 15px;
   padding-right: 0px;
   border-bottom: 1px solid #DDDDDD;
   font-size: 13pt;
   color: black;
-  display: inline-block;
-  width: 182px; }
+  width: 182px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 .category-item-selectable {
   cursor: pointer;
@@ -787,13 +799,6 @@ table.ra-statictable tr td {
 .category-item-selected {
   background-color: #FF6600; }
 
-.category-buttons {
-  position: relative;
-  margin-left: -200px;
-  right: -200px;
-  top: 0px;
-  background-color: pink; }
-
 .group-item {
   color: #FF6600;
   font-size: 13pt;
@@ -801,12 +806,14 @@ table.ra-statictable tr td {
   margin: 0px;
   margin-bottom: 5px; }
 
-.group-action-button {
-  height: 26px;
-  padding-top: 0px;
-  padding-left: 8px;
-  margin-left: 10px;
-  width: 32px; }
+.group-item-name {
+  padding-right: 10px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 .group-container {
   margin-bottom: 5px; }

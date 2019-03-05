@@ -1,11 +1,10 @@
-﻿using Orbital7.MyWeb.Services.Default;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Orbital7.Extensions;
+using Orbital7.MyWeb.Services;
+using Orbital7.MyWeb.Services.Default;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 
 namespace WebJob
 {
@@ -13,10 +12,14 @@ namespace WebJob
     {
         static void Main(string[] args)
         {
-            var serviceProvider = DefaultServicesFactory.CreateDefault();
-            var configuration = serviceProvider.GetRequiredService<IConfiguration>();
-            var temp = configuration["StorageConnectionString"];
-            Console.WriteLine("Test: " + temp);
+            var now = DateTime.Now;
+
+            if (now.Hour >= 7 && now.Hour <= 21)
+            {
+                var serviceProvider = DefaultServicesFactory.CreateDefault();
+                AsyncHelper.RunSync(() => serviceProvider.GetRequiredService<IWebService>()
+                    .UpdateAllThumbnailsIfDueAsync());
+            }
         }
     }
 }
