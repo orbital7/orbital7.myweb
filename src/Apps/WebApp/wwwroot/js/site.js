@@ -37,7 +37,11 @@ function renderWeb() {
     renderSidebar();
 
     if (_web.categories.length > 0) {
-        selectCategory(_web.categories[0].id);
+
+        var categoryId = sessionStorage.getItem("myweb-session-categoryId");
+        if (!categoryId)
+            categoryId = _web.categories[0].id;
+        selectCategory(categoryId);
     }
     else if (!_editMode) {
         showPanelMessage("Use the edit controls to add Categories, Groups, and Sites");
@@ -75,6 +79,8 @@ function renderSidebar() {
 }
 
 function selectCategory(categoryId) {
+
+    sessionStorage.setItem("myweb-session-categoryId", categoryId);
 
     $(".category-item")
         .removeClass("category-item-selected")
@@ -289,6 +295,7 @@ function beginDeleteCategory(event, categoryId) {
 
 function completeDeleteCategory(categoryId, web) {
 
+    sessionStorage.setItem("myweb-session-categoryId", null);
     location.reload();
 }
 
