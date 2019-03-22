@@ -30,7 +30,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\orbital7.rapidapp\src\Orbital7.RapidApp2\Orbital7.RapidApp2.csproj" />
+    <ProjectReference Include="..\..\..\..\orbital7.rapidapp\src\Orbital7.RapidApp\Orbital7.RapidApp.csproj" />
     <ProjectReference Include="..\..\Orbital7.MyWeb.Services.Default\Orbital7.MyWeb.Services.Default.csproj">
       <Private>true</Private>
     </ProjectReference>

@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScriptJobsConsole", "Apps\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "Apps\WebApp\WebApp.csproj", "{125F44FD-C8B4-4DEE-AAF3-DE800DAECC10}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orbital7.RapidApp2", "..\..\orbital7.rapidapp\src\Orbital7.RapidApp2\Orbital7.RapidApp2.csproj", "{9961C281-B0B1-41B1-8709-9843BD5609B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orbital7.RapidApp", "..\..\orbital7.rapidapp\src\Orbital7.RapidApp\Orbital7.RapidApp.csproj", "{9961C281-B0B1-41B1-8709-9843BD5609B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebJob", "Apps\WebJob\WebJob.csproj", "{EA17B23E-11A2-4A7A-87A7-B1D3AC62202F}"
 EndProject

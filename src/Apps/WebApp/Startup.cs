@@ -57,7 +57,7 @@ namespace WebApp
 
 #if debug
             var nodeModulesPath = Path.GetFullPath(Path.Combine(env.ContentRootPath,
-                @"..\..\..\..\orbital7.rapidapp\src\Orbital7.RapidApp2\node_modules"));
+                @"..\..\..\..\orbital7.rapidapp\src\Orbital7.RapidApp\node_modules"));
 #else
             var nodeModulesPath = Path.Combine(env.ContentRootPath, @"node_modules");
 #endif
