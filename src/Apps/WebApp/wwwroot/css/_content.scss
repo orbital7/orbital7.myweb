@@ -81,3 +81,19 @@ $button-width: 45px;
     margin-left: -$button-width;
     width: $button-width;
 }
+
+@media (max-width: 600px) {
+
+    .site-thumbnail {
+        width: 150px;
+        height: 95px;
+    }
+
+    .site-edit-button {
+        left: -81px;
+    }
+
+    .site-delete-button {
+        left: -26px;
+    }
+}
