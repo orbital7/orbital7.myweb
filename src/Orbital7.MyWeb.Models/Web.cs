@@ -30,7 +30,11 @@ namespace Orbital7.MyWeb.Models
         public static Web Load(
             string serializedJson)
         {
-            var web = JsonConvert.DeserializeObject<Web>(serializedJson);
+            var web = JsonConvert.DeserializeObject<Web>(serializedJson,
+                new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                });
 
             foreach (var category in web.Categories)
             {

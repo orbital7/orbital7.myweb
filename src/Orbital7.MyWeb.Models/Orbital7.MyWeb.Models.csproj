@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="Orbital7.Extensions.Attributes" Version="2.2.0" />
+    <PackageReference Include="Orbital7.Extensions.Attributes" Version="2.2.1" />
   </ItemGroup>
 
 </Project>

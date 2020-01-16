@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ScriptJobsConsole.ScriptJobs
 {
-    public class CreateTestWeb : ScriptJob
+    public class CreateTestWeb : ScriptJobBase
     {
         private const string SAMPLE_WEB_KEY = "sampleweb";
 

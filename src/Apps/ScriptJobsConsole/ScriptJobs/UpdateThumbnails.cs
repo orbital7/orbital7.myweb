@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ScriptJobsConsole.ScriptJobs
 {
-    public class UpdateThumbnails : ScriptJob
+    public class UpdateThumbnails : ScriptJobBase
     {
         public override async Task ExecuteAsync()
         {

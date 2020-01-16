@@ -15,12 +15,7 @@ namespace Orbital7.MyWeb.Services.Default
         {
             var services = new ServiceCollection();
             services.AddMyWebDefaultServices();
-
-            var builder = CreateDefaultBuilder(environmentName)
-                .AddUserSecrets<TStartup>()
-                .AddEnvironmentVariables();
-            services.AddSingleton<IConfiguration>(builder.Build());
-
+            services.AddAppSettingsConfigurationWithUserSecrets<TStartup>(environmentName);
             return services;
         }
 
@@ -29,24 +24,8 @@ namespace Orbital7.MyWeb.Services.Default
         {
             var services = new ServiceCollection();
             services.AddMyWebDefaultServices();
-
-            var builder = CreateDefaultBuilder(environmentName)
-                .AddEnvironmentVariables();
-            services.AddSingleton<IConfiguration>(builder.Build());
-
+            services.AddAppSettingsConfiguration(environmentName);
             return services;
-        }
-
-        private static IConfigurationBuilder CreateDefaultBuilder(
-            string environmentName)
-        {
-            var environment = Environment.GetEnvironmentVariable(environmentName);
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{environment}.json", optional: true);
-
-            return builder;
         }
 
         public static IServiceProvider CreateDefault<TStartup>(
