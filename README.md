@@ -1,6 +1,6 @@
 <b>Orbital7's MyWeb</b> is an ASP.NET Core 3.1 web application that provides a custom homepage to organize and display your selected favorite websites as thumbnails:
 
-<img src="https://github.com/orbital7/orbital7.myweb/blob/master/screenshots/Screenshot01.png" width="500" />
+<img src="https://github.com/orbital7/orbital7.myweb/blob/main/screenshots/Screenshot01.png" width="500" />
 
 MyWeb uses the following services:
 <ul>
