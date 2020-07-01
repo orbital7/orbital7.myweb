@@ -1,4 +1,22 @@
-﻿#groups-panel {
+﻿.layout-header {
+    min-height: 50px;
+    background-color: $ra-color-header-background;
+    border-bottom: 1px solid $ra-color-header-border;
+    border-left: 1px solid $ra-color-header-border;
+    border-right: 1px solid $ra-color-header-border;
+}
+
+.layout-sidebar {
+    min-width: 182px;
+    background-color: $ra-color-background;
+    overflow: visible;
+}
+
+.layout-body {
+    background-color: $ra-color-background;
+}
+
+#groups-panel {
     width: 100%;
     height: 100%;
     padding-left: 18px;

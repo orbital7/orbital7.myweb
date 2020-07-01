@@ -32,16 +32,16 @@
 </head>
 <body>
 
-    <div class="ra-layout">
+    <div class="ra-container ra-container-vertical">
 
-        <div class="ra-layout-header">
+        <div class="layout-header">
             
             <table style="width: 100%; padding: 5px; padding-top: 6px;">
                 <tr>
                     <td class="ra-layout-sidebar-toggle-button" style="height: 38px; width: 56px; vertical-align: middle; text-align: left;">
                         <button type="button"
                                 class="btn btn-outline-secondary"
-                                onclick="raToggleSidebar();">
+                                onclick="raToggleSidebar('.ra-layout-sidebar');">
                             <i class="fas fa-bars" style="font-size: 1.1em;"></i>
                         </button>
                     </td>
@@ -72,17 +72,27 @@
 
         </div>
 
-        <div class="ra-layout-sidebar">
+        <div class="ra-container ra-container-horizontal">
 
-        </div>
+            <div class="ra-layout-sidebar layout-sidebar">
 
-        <div class="ra-layout-body" onmousedown="raHideSidebar();">
-            @RenderBody()
+            </div>
+
+            <div class="ra-container layout-body" onmousedown="raHideSidebar('.ra-layout-sidebar');">
+                @RenderBody()
+            </div>
+
         </div>
 
     </div>
 
     @await Html.RAInfrastructurePageComponentsAsync()
+
+    <script>
+
+        
+
+    </script>
 
 </body>
 </html>
