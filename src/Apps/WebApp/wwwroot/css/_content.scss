@@ -11,7 +11,7 @@ $button-width: 45px;
     padding-left: 15px;
     padding-right: 0px;
     border-bottom: 1px solid #DDDDDD;
-    font-size: 13pt;
+    font-size: 17px;
     color: black;
     width: 182px;
     @include no-select();
@@ -32,7 +32,7 @@ $button-width: 45px;
 
 .group-item {
     color: $active-color;
-    font-size: 13pt;
+    font-size: 17px;
     padding: 0px;
     margin: 0px;
     margin-bottom: 5px;

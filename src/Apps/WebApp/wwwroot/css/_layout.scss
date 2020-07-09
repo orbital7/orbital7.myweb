@@ -1,19 +1,22 @@
-﻿.layout-header {
+﻿$color-background: #F6F6F6;
+$color-border: #E1E1E1;
+
+.layout-header {
     min-height: 50px;
-    background-color: $ra-color-header-background;
-    border-bottom: 1px solid $ra-color-header-border;
-    border-left: 1px solid $ra-color-header-border;
-    border-right: 1px solid $ra-color-header-border;
+    background-color: white;
+    border-bottom: 1px solid $color-border;
+    border-left: 1px solid $color-border;
+    border-right: 1px solid $color-border;
 }
 
 .layout-sidebar {
     min-width: 182px;
-    background-color: $ra-color-background;
+    background-color: $color-background;
     overflow: visible;
 }
 
 .layout-body {
-    background-color: $ra-color-background;
+    background-color: $color-background;
 }
 
 #groups-panel {

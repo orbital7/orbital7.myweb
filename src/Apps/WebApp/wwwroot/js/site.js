@@ -66,11 +66,11 @@ function renderSidebar() {
         html += "<i class='far fa-edit'></i></button>";
         html += "<div class='dropdown-menu'>";
         html += "<a class='dropdown-item ra-clickable' onclick='beginAddGroup(event, \"" + category.id + "\");'>";
-        html += "<button class='btn btn-secondary ra-btn-inline'><i class='fas fa-plus fa ra-btn-add'></i></button> Add Group</a>";
+        html += "<button type='button' class='btn btn-secondary ra-btn-inline'><i class='fas fa-plus fa ra-btn-add'></i></button> Add Group</a>";
         html += "<a class='dropdown-item ra-clickable' onclick='beginEditCategory(event, \"" + category.id + "\");'>";
-        html += "<button class='btn btn-secondary ra-btn-inline'><i class='far fa-edit fa ra-btn-edit'></i></button> Edit Category</a>";
+        html += "<button type='button' class='btn btn-secondary ra-btn-inline'><i class='far fa-edit fa ra-btn-edit'></i></button> Edit Category</a>";
         html += "<a class='dropdown-item ra-clickable' onclick='beginDeleteCategory(event, \"" + category.id + "\");'>";
-        html += "<button class='btn btn-secondary ra-btn-inline'><i class='far fa-trash-alt fa ra-btn-delete'></i></button> Delete Category</a>";
+        html += "<button type='button' class='btn btn-secondary ra-btn-inline'><i class='far fa-trash-alt fa ra-btn-delete'></i></button> Delete Category</a>";
         html += "</div>";
         html += "</div></td></tr></table>";
     }
@@ -160,11 +160,11 @@ function getGroupHtml(group) {
 
     var html = "<div id='" + group.id + "'><div class='group-item'>";
     html += "<span class='group-item-name'>" + group.name + "</span>";
-    html += "<button class='btn btn-secondary ra-btn-add edit-element ra-btn-inline' onclick='beginAddSite(event, \"" +
+    html += "<button type='button' class='btn btn-secondary ra-btn-add edit-element ra-btn-inline' onclick='beginAddSite(event, \"" +
         group.id + "\");'><i class='fas fa-plus'></i></button>";
-    html += "<button class='btn btn-secondary ra-btn-edit edit-element ra-btn-inline' onclick='beginEditGroup(event, \"" +
+    html += "<button type='button' class='btn btn-secondary ra-btn-edit edit-element ra-btn-inline' onclick='beginEditGroup(event, \"" +
         group.id + "\");'><i class='far fa-edit fa'></i></button>";
-    html += "<button class='btn btn-secondary ra-btn-delete edit-element ra-btn-inline' onclick='beginDeleteGroup(event, \"" +
+    html += "<button type='button' class='btn btn-secondary ra-btn-delete edit-element ra-btn-inline' onclick='beginDeleteGroup(event, \"" +
         group.id + "\");'><i class='far fa-trash-alt fa'></i></button>";
     html += "</div><div class='group-container'>";
 
@@ -190,9 +190,9 @@ function getSiteHtml(site) {
     var html = "<span id='" + site.id + "' class='site-item' ";
     html += "onclick='navigateTo(\"" + site.url + "\");'>";
     html += "<img class='site-thumbnail' src='" + site.thumbnailCachedUrl + "' title='" + site.url + "' />";
-    html += "<button class='btn btn-secondary ra-btn-edit edit-element site-edit-button' onclick='beginEditSite(event, \"" +
+    html += "<button type='button' class='btn btn-secondary ra-btn-edit edit-element site-edit-button' onclick='beginEditSite(event, \"" +
         site.id + "\");'><i class='far fa-edit fa fa-lg'></i></button>";
-    html += "<button class='btn btn-secondary ra-btn-delete edit-element site-delete-button' onclick='beginDeleteSite(event, \"" +
+    html += "<button type='button' class='btn btn-secondary ra-btn-delete edit-element site-delete-button' onclick='beginDeleteSite(event, \"" +
         site.id + "\");'><i class='far fa-trash-alt fa fa-lg'></i></button>";
     html += "</span>";
 
