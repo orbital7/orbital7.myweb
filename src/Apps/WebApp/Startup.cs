@@ -52,13 +52,6 @@ namespace WebApp
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            #if debug
-                var libPath = Path.GetFullPath(Path.Combine(env.ContentRootPath,
-                    @"..\..\..\..\orbital7.rapidapp\src\Orbital7.RapidApp\Lib"));
-            #else
-                var libPath = Path.Combine(env.ContentRootPath, @"Lib");
-            #endif
-            app.ExtendWebRootStaticFiles(env, libPath, "");
 
             app.UseRouting();
 
