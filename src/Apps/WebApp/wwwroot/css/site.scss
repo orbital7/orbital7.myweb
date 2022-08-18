@@ -1,4 +1,10 @@
-﻿@import "_ra-mixins.scss";
+﻿$active-color: #FF6600;
+$button-width: 45px;
+$color-background: #0D1117;
+$color-border: #21262D;
+$color-header: #161B22;
+
+@import "_ra-mixins.scss";
 @import "_ra-theme.scss";
 @import "_ra-fonts-opensans.scss";
 @import "_layout.scss";

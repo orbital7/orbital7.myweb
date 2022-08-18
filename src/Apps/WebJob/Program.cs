@@ -4,6 +4,7 @@ using Orbital7.Extensions;
 using Orbital7.MyWeb.Services;
 using Orbital7.MyWeb.Services.Default;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebJob
@@ -19,6 +20,8 @@ namespace WebJob
                 var serviceProvider = DefaultServicesFactory.CreateDefault();
                 AsyncHelper.RunSync(() => serviceProvider.GetRequiredService<IWebService>()
                     .UpdateAllThumbnailsIfDueAsync());
+
+                Thread.Sleep(1000 * 60 * 5);
             }
         }
     }

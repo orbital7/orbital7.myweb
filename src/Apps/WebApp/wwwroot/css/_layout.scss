@@ -1,9 +1,6 @@
-﻿$color-background: #F6F6F6;
-$color-border: #E1E1E1;
-
-.layout-header {
+﻿.layout-header {
     min-height: 50px;
-    background-color: white;
+    background-color: $color-header;;
     border-bottom: 1px solid $color-border;
     border-left: 1px solid $color-border;
     border-right: 1px solid $color-border;
